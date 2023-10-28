@@ -8,7 +8,7 @@ export const snippetStore = writable<CodeSnippet[]>([]); //[codesnip1, codesnip2
 // add a snippet
 export function addSnippet(input: CodeSnippetInput) {
 	// give acces to the value of the snippet store
-	let snippets = get(snippetStore); // $snippetStore => listen to changes to the value of snippetStore
+	const snippets = get(snippetStore); // $snippetStore => listen to changes to the value of snippetStore
 	snippetStore.update(() => {
 		return [{ ...input, favorite: false }, ...snippets];
 	});
@@ -16,7 +16,7 @@ export function addSnippet(input: CodeSnippetInput) {
 
 // delete snippet
 export function deleteSnippet(index: number) {
-    let snippets = get(snippetStore)
+    const snippets = get(snippetStore)
     snippets.splice(index, 1) // remove one item from index "index"
     snippetStore.update(() => {
         return snippets
@@ -26,7 +26,7 @@ export function deleteSnippet(index: number) {
 // toggleFavorite
 export function toggleFavorite(index: number) {
     console.log("favorite")
-    let snippets = get(snippetStore)
+    const snippets = get(snippetStore)
     snippetStore.update(() => {
         return snippets.map((snippet, snippetIndex) => {
             if(snippetIndex === index) {
